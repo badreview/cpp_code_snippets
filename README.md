@@ -1,7 +1,8 @@
 # cpp_code_snippets
 the code snippets collection
 
-##sort vector of custom data by lambda function
+## sort vector of custom data by lambda function
+
 ```c++
     std::vector<std::vector<int> > array;
     
@@ -19,7 +20,8 @@ the code snippets collection
 result: [2, 2], [3, 5], [1, 5], [0, 5]
 
 
-##lambda compare function of priority_queue
+## lambda compare function of priority_queue
+
 ```c++
     auto cmp = [](const std::vector<int> &a, const std::vector<int> &b){
         return (a[1] < b[1]) || (a[1] == b[1] && a[0] > b[0]);
