@@ -2,8 +2,6 @@
 
 using namespace std;
  
-/// implement your class here
-
 struct PrintTypeBase {
 	virtual void print(){};
 };
@@ -22,6 +20,8 @@ struct PrintType<T*> : public PrintTypeBase {
 	T *_t;
 };
 
+//Printer class to print any object assigned to it, 
+//as long as the object can be streamed to std::cout
 class Printer {
 public:
 ~Printer() { delete _ptr; }
@@ -37,38 +37,36 @@ void print() {
 private:
 PrintTypeBase *_ptr;
 };
-///
- 
- 
+
 int main() {
 	Printer printer;
- 
-	printer = 42;
-	printer.print(); //should print "42" to standard output
- 
-	int* value = new int(10);
-	printer = value;
-	printer.print(); // should print "[10]"
- 
-	*value = 20; // the value pointer did not change, changed a value by it
-	printer.print(); // should print "[20]"
- 
-	float* fvalue = new float(9.81);
-	printer = fvalue;
-	printer.print(); // should print "[9.81]"
- 
-    *fvalue = 0.2+0.3;
-	printer.print(); // should print "[0.5]"
- 
-	printer = std::string("Hello world");
+	
+	printer = 58;
+	printer.print(); //print "58" to standard output
+	
+	printer = 3.18777;
 	printer.print(); 
-	//should print "Hello world"
+	//print "3.18777"	
  
-	printer = 2.718281;
+	int* i_ptr = new int(30);
+	printer = i_ptr;
+	printer.print(); // print "[30]"
+ 
+	*i_ptr = 5; // changed the value pointed by the pointer
+	printer.print(); // print "[5]"
+	delete i_ptr;
+ 
+	float* f_ptr = new float(3.88);
+	printer = f_ptr;
+	printer.print(); // print "[3.88]"
+	
+	*f_ptr = 0.12+0.3;		
+	printer.print(); // print "[0.42]"
+	delete f_ptr;
+ 
+	printer = std::string("What does fool mean?");
 	printer.print(); 
-	//should print "2.718281"
+	//print "What does fool mean?"
  
-    delete fvalue;
-    delete value;
 	return 0;
 }
